@@ -84,11 +84,7 @@ function copyToClipboard(link) {
     txtToCopy.value = link;
     document.body.appendChild(txtToCopy);
     txtToCopy.select();
-
-    console.log(txtToCopy.value);
     var res = document.execCommand('copy');
-    console.log(res);
-
     txtToCopy.parentNode.removeChild(txtToCopy);
 }
 browser.browserAction.onClicked.addListener(copyLink);
