@@ -35,8 +35,10 @@ function copyLink(tabInfo) {
 
             //https://www.facebook.com/crippli.../2160482180633441/?type=3&theater
             // -> fb.com/2160482180633441
-            if (paths && paths[2] == 'photos' || paths[2] == 'videos')
+            if (paths && (paths[2] == 'photos' || paths[2] == 'videos'))
                 var url = 'fb.com/' + paths[paths.length - 2]
+            if (paths && paths[1] == 'photo.php')
+                var url = 'fb.com/' + searchs.fbid
             if (paths && paths[2] == 'posts')
                 var url = 'fb.com/' + paths[paths.length - 1]
             break;
