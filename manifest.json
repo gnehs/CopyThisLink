@@ -1,11 +1,11 @@
 {
     "manifest_version": 2,
     "name": "CopyThisLink",
-    "version": "0.1",
+    "version": "0.1.3",
     "author": "gnehs",
     "description": "CopyThisLink",
     "icons": {
-        "48": "icons/CopyThisLink.svg"
+        "512": "icons/CopyThisLink.png"
     },
     "browser_action": {
         "default_icon": "icons/CopyThisLink.svg"

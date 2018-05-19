@@ -37,13 +37,15 @@ function copyLink(tabInfo) {
             // -> fb.com/2160482180633441
             if (paths && paths[2] == 'photos' || paths[2] == 'videos')
                 var url = 'fb.com/' + paths[paths.length - 2]
+            if (paths && paths[2] == 'posts')
+                var url = 'fb.com/' + paths[paths.length - 1]
             break;
         case 'www.youtube.com':
             if (searchs && searchs.v)
                 url = 'youtu.be/' + searchs.v
             break;
         case 'stackoverflow.com':
-            if (paths && (paths[1] == 'questions'))
+            if (paths && (paths[1] == 'questions') && !parser.hash)
                 url = 'stackoverflow.com/questions/' + paths[2]
             break;
         case 'www.google.com':
@@ -54,7 +56,7 @@ function copyLink(tabInfo) {
                 url = 'google.com/search?q=' + searchs.q + '&tbm=' + searchs.tbm + (parser.hash ? parser.hash : '')
             break;
     }
-    copyToClipboard(url)
+    copyToClipboard(url);
 }
 
 function parseQuery(search) {
@@ -75,17 +77,18 @@ function parseQuery(search) {
     return argsParsed;
 }
 
-function copyToClipboard(text) {
-    function oncopy(event) {
-        document.removeEventListener("copy", oncopy, true);
-        // Hide the event from the page to prevent tampering.
-        event.stopImmediatePropagation();
-        // Overwrite the clipboard content.
-        event.preventDefault();
-        event.clipboardData.setData("text/plain", text);
-    }
-    document.addEventListener("copy", oncopy, true);
-    // Requires the clipboardWrite permission, or a user gesture:
-    document.execCommand("copy");
+function copyToClipboard(link) {
+    var txtToCopy = document.createElement('input');
+    txtToCopy.style.left = '-300px';
+    txtToCopy.style.position = 'absolute';
+    txtToCopy.value = link;
+    document.body.appendChild(txtToCopy);
+    txtToCopy.select();
+
+    console.log(txtToCopy.value);
+    var res = document.execCommand('copy');
+    console.log(res);
+
+    txtToCopy.parentNode.removeChild(txtToCopy);
 }
 browser.browserAction.onClicked.addListener(copyLink);
