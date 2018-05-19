@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "CopyThisLink",
+    "version": "0.1",
+    "author": "gnehs",
+    "description": "CopyThisLink",
+    "icons": {
+        "48": "icons/CopyThisLink.svg"
+    },
+    "browser_action": {
+        "default_icon": "icons/CopyThisLink.svg"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "permissions": [
+        "activeTab",
+        "contextMenus",
+        "clipboardWrite"
+    ]
+}
