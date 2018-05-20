@@ -50,6 +50,10 @@ function copyLink(tabInfo) {
             if (paths && (paths[1] == 'questions') && !parser.hash)
                 url = 'stackoverflow.com/questions/' + paths[2]
             break;
+        case 'userstyles.org':
+            if (paths && (paths[1] == 'styles'))
+                url = 'userstyles.org/styles/' + paths[2]
+            break;
         case 'www.google.com':
             url = url.toString().replace(new RegExp('https://www.google.com'), 'google.com'); //replace domain
             if (searchs && searchs.q)
