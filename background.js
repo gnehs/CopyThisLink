@@ -61,6 +61,14 @@ function copyLink(tabInfo) {
             if (searchs && searchs.q && searchs.tbm)
                 url = 'google.com/search?q=' + searchs.q + '&tbm=' + searchs.tbm + (parser.hash ? parser.hash : '')
             break;
+        case 'shopee.tw':
+            // https://shopee.tw/%E7%8F%BE%E8%B...%E6%9E%B6-i.5319622.643281846
+            // => https://shopee.tw/product/5319622/643281846/
+            var shopeePath = parser.pathname.split('-')
+            var shopeePath = shopeePath[shopeePath.length - 1].split('.')
+            if (shopeePath[0] == 'i' && shopeePath.length == 3)
+                url = 'shopee.tw/product/' + shopeePath[1] + '/' + shopeePath[2];
+            break;
     }
     copyToClipboard(url);
 }
