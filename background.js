@@ -1,6 +1,4 @@
 function copyLink(tabInfo) {
-    browser.browserAction.setBadgeText({ text: '✓' })
-    setInterval(function() { browser.browserAction.setBadgeText({ text: '' }) }, 150);
 
     // url parser
     var parser = document.createElement('a');
@@ -70,7 +68,19 @@ function copyLink(tabInfo) {
                 url = 'shopee.tw/product/' + shopeePath[1] + '/' + shopeePath[2];
             break;
     }
+    setBadgeText(parser.href == url)
     copyToClipboard(url);
+}
+
+function setBadgeText(s) {
+    if (s) {
+        browser.browserAction.setBadgeText({ text: '-' })
+        browser.browserAction.setBadgeBackgroundColor({ color: "#000" });
+    } else {
+        browser.browserAction.setBadgeText({ text: '✓' })
+        browser.browserAction.setBadgeBackgroundColor({ color: "green" });
+    }
+    setInterval(function() { browser.browserAction.setBadgeText({ text: '' }) }, 100);
 }
 
 function parseQuery(search) {
